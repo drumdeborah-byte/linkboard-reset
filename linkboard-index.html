@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linkboard — Reset Password</title>
+  <style>
+    :root {
+      --bg: #c0c0c0;
+      --surface: #d4d4d4;
+      --border-lt: #efefef;
+      --border-dk: #555555;
+      --green: #2a6e2a;
+      --green-btn: #5AA15A;
+      --text: #000;
+      --muted: #555;
+      --danger: #8b0000;
+      --font: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .window {
+      width: 360px;
+      background: var(--bg);
+      border-top: 2px solid var(--border-lt);
+      border-left: 2px solid var(--border-lt);
+      border-right: 2px solid var(--border-dk);
+      border-bottom: 2px solid var(--border-dk);
+    }
+
+    .titlebar {
+      background: var(--green);
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .titlebar-logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+    }
+
+    .titlebar-sub {
+      font-size: 11px;
+      color: #a8d4a8;
+    }
+
+    .body {
+      background: var(--surface);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 2px solid var(--border-dk);
+    }
+
+    .panel-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      padding-bottom: 8px;
+      border-bottom: 1px solid #999;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      width: 70px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    input[type="password"] {
+      flex: 1;
+      font-family: var(--font);
+      font-size: 13px;
+      padding: 5px 8px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      border-top: 2px solid var(--border-dk);
+      border-left: 2px solid var(--border-dk);
+      border-right: 2px solid var(--border-lt);
+      border-bottom: 2px solid var(--border-lt);
+    }
+    input:focus { background: #fffff0; }
+
+    button {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 20px;
+      cursor: pointer;
+      background: var(--green-btn);
+      color: #fff;
+      border-top: 2px solid #7ec47e;
+      border-left: 2px solid #7ec47e;
+      border-right: 2px solid #2a5a2a;
+      border-bottom: 2px solid #2a5a2a;
+      letter-spacing: 0.04em;
+    }
+    button:active {
+      border-top-color: #2a5a2a; border-left-color: #2a5a2a;
+      border-right-color: #7ec47e; border-bottom-color: #7ec47e;
+    }
+    button:disabled { opacity: 0.6; cursor: default; }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    .msg {
+      font-size: 11px;
+      font-style: italic;
+    }
+    .msg.success { color: var(--green); }
+    .msg.error   { color: var(--danger); }
+
+    .done-box {
+      text-align: center;
+      padding: 10px 0 4px;
+      display: none;
+    }
+    .done-box p {
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .done-box small {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .error-box {
+      text-align: center;
+      padding: 10px 0 4px;
+      display: none;
+    }
+    .error-box p {
+      font-size: 13px;
+      color: var(--danger);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .error-box small {
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <span class="titlebar-logo">LINKBOARD</span>
+    <span class="titlebar-sub">Password Reset</span>
+  </div>
+  <div class="body">
+    <div class="panel-title">▸ SET NEW PASSWORD</div>
+
+    <!-- FORM -->
+    <div id="formArea">
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="row">
+          <label>New Password</label>
+          <input type="password" id="newPassword" placeholder="min 6 characters" />
+        </div>
+        <div class="row">
+          <label>Confirm</label>
+          <input type="password" id="confirmPassword" placeholder="type it again" />
+        </div>
+      </div>
+      <div class="footer-row">
+        <button id="btnReset">SAVE NEW PASSWORD</button>
+        <span class="msg" id="msg"></span>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="done-box" id="doneBox">
+      <p>✓ Password updated!</p>
+      <small>You can close this page and sign in to Linkboard with your new password.</small>
+    </div>
+
+    <!-- ERROR -->
+    <div class="error-box" id="errorBox">
+      <p>This reset link has expired.</p>
+      <small>Please open the Linkboard extension and use "Forgot Password" to request a new link.</small>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL     = 'https://zoabtsfjpwxmwxrofchb.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_JMTb_mJAJrVgv0ZqDRNOKw_AK8_hWed';
+
+  // Parse the token from the URL hash
+  function getHashParams() {
+    const hash = window.location.hash.substring(1);
+    const params = {};
+    hash.split('&').forEach(part => {
+      const [key, val] = part.split('=');
+      params[decodeURIComponent(key)] = decodeURIComponent(val || '');
+    });
+    return params;
+  }
+
+  const params = getHashParams();
+
+  // If there's an error in the URL, show the error box immediately
+  if (params.error) {
+    document.getElementById('formArea').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'block';
+  }
+
+  const accessToken = params.access_token;
+
+  document.getElementById('btnReset').addEventListener('click', async () => {
+    const newPassword     = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const msg             = document.getElementById('msg');
+
+    if (!newPassword || newPassword.length < 6) {
+      msg.textContent = 'Password must be at least 6 characters.';
+      msg.className = 'msg error'; return;
+    }
+    if (newPassword !== confirmPassword) {
+      msg.textContent = 'Passwords do not match.';
+      msg.className = 'msg error'; return;
+    }
+    if (!accessToken) {
+      msg.textContent = 'Invalid reset link.';
+      msg.className = 'msg error'; return;
+    }
+
+    const btn = document.getElementById('btnReset');
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${accessToken}`
+      },
+      body: JSON.stringify({ password: newPassword })
+    });
+
+    const data = await res.json();
+
+    if (data.id) {
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('doneBox').style.display = 'block';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'SAVE NEW PASSWORD';
+      msg.textContent = 'Something went wrong. Please try again.';
+      msg.className = 'msg error';
+    }
+  });
+</script>
+</body>
+</html>
