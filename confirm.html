@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LinkPal — Email Confirmed</title>
+  <style>
+    :root {
+      --bg: #c0c0c0;
+      --surface: #d4d4d4;
+      --border-lt: #efefef;
+      --border-dk: #555555;
+      --green: #2a6e2a;
+      --green-btn: #5AA15A;
+      --text: #000;
+      --muted: #555;
+      --font: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .window {
+      width: 360px;
+      background: var(--bg);
+      border-top: 2px solid var(--border-lt);
+      border-left: 2px solid var(--border-lt);
+      border-right: 2px solid var(--border-dk);
+      border-bottom: 2px solid var(--border-dk);
+    }
+
+    .titlebar {
+      background: var(--green);
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .titlebar-logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+    }
+
+    .titlebar-sub {
+      font-size: 11px;
+      color: #a8d4a8;
+    }
+
+    .body {
+      background: var(--surface);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-top: 2px solid var(--border-dk);
+      text-align: center;
+    }
+
+    .checkmark {
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .message {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .instruction {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      background: #fff;
+      border-top: 2px solid var(--border-dk);
+      border-left: 2px solid var(--border-dk);
+      border-right: 2px solid var(--border-lt);
+      border-bottom: 2px solid var(--border-lt);
+      padding: 10px 14px;
+      line-height: 1.5;
+    }
+
+    .small {
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <span class="titlebar-logo">LinkPal</span>
+    <span class="titlebar-sub">Email Confirmed</span>
+  </div>
+  <div class="body">
+    <div class="checkmark">✅</div>
+    <div class="title">You're confirmed!</div>
+    <div class="message">Your email address has been verified successfully.</div>
+    <div class="instruction">
+      You can now close this page and open the LinkPal extension in Chrome to sign in with your email and password.
+    </div>
+    <div class="small">Save it. Find it. Go.</div>
+  </div>
+</div>
+
+</body>
+</html>
